@@ -1,12 +1,16 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
 public class Cartao
 {
+    @Id
+    private String numero;
     private boolean credito;
     private Date validade;
-    private String numero;
     private String codigoValidacao;
 
     public Cartao( boolean credito, Date validade, String numero, String codigoValidacao )
