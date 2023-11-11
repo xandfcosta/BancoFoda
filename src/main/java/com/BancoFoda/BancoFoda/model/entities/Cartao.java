@@ -13,13 +13,7 @@ public class Cartao
     private Date validade;
     private String codigoValidacao;
 
-    public Cartao( boolean credito, Date validade, String numero, String codigoValidacao )
-    {
-        this.credito = credito;
-        this.validade = validade;
-        this.numero = numero;
-        this.codigoValidacao = codigoValidacao;
-    }
+    public Cartao(){ }
 
     public boolean isCredito( )
     {

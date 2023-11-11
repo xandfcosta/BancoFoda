@@ -8,6 +8,7 @@ import java.util.Set;
 public class Conta
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int numero;
     private int agencia;
     private float salario;
@@ -15,13 +16,7 @@ public class Conta
     @JoinColumn(name="cartao_id")
     private Set< Cartao > cartoes;
 
-    public Conta( int numero, int agencia, float salario, Set< Cartao > cartoes )
-    {
-        this.numero = numero;
-        this.agencia = agencia;
-        this.salario = salario;
-        this.cartoes = cartoes;
-    }
+    public Conta() { }
 
     public int getNumero( )
     {
