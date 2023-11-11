@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.domain.model;
+package com.BancoFoda.BancoFoda.model;
 
 import java.util.Date;
 
