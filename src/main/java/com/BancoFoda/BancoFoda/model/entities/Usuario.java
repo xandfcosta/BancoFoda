@@ -1,15 +1,20 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
 public class Usuario
 {
-    private String nomeCompleto;
+    @Id
     private String CPF;
+    private String nomeCompleto;
     private String email;
     private Date dataNascimento;
     private float receitaMensal;
     private String senha;
+    @OneToOne
     private Conta conta;
 
     public Usuario( String nomeCompleto, String CPF, String email, Date dataNascimento, float receitaMensal, String senha )
