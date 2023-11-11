@@ -14,7 +14,7 @@ public class Cartao
     private Date validade;
     private String codigoValidacao;
 
-    public Cartao() {}
+    public Cartao(){ }
 
     public boolean isCredito( )
     {
