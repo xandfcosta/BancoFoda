@@ -1,15 +1,21 @@
-package com.BancoFoda.BancoFoda.model;
+package com.BancoFoda.BancoFoda.model.entities;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
 
+import java.util.Set;
+
+@Entity
 public class Conta
 {
-    private String numero;
-    private String agencia;
+    @Id
+    private int numero;
+    private int agencia;
     private float salario;
-    private ArrayList< Cartao > cartoes;
+    @OneToMany
+    @JoinColumn(name="cartao_id")
+    private Set< Cartao > cartoes;
 
-    public Conta( String numero, String agencia, float salario, ArrayList< Cartao > cartoes )
+    public Conta( int numero, int agencia, float salario, Set< Cartao > cartoes )
     {
         this.numero = numero;
         this.agencia = agencia;
@@ -17,22 +23,22 @@ public class Conta
         this.cartoes = cartoes;
     }
 
-    public String getNumero( )
+    public int getNumero( )
     {
         return numero;
     }
 
-    public void setNumero( String numero )
+    public void setNumero( int numero )
     {
         this.numero = numero;
     }
 
-    public String getAgencia( )
+    public int getAgencia( )
     {
         return agencia;
     }
 
-    public void setAgencia( String agencia )
+    public void setAgencia( int agencia )
     {
         this.agencia = agencia;
     }
@@ -47,12 +53,12 @@ public class Conta
         this.salario = salario;
     }
 
-    public ArrayList< Cartao > getCartoes( )
+    public Set< Cartao > getCartoes( )
     {
         return cartoes;
     }
 
-    public void setCartoes( ArrayList< Cartao > cartoes )
+    public void setCartoes( Set< Cartao > cartoes )
     {
         this.cartoes = cartoes;
     }
