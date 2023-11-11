@@ -21,6 +21,10 @@ public class Fatura
         this.dataPagamento = dataPagamento;
     }
 
+    public int getId( ) { return id; }
+
+    public void setId( int id ) { this.id = id; }
+
     public float getValor( )
     {
         return valor;
