@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.model;
+package com.BancoFoda.BancoFoda.model.entities;
 
 import java.util.ArrayList;
 
