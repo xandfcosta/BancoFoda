@@ -8,6 +8,7 @@ import java.util.Date;
 public class Cartao
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String numero;
     private boolean credito;
     private Date validade;
