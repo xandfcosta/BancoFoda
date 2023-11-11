@@ -1,19 +1,23 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
-import java.util.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Funcionario extends Usuario
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String setor;
     private String cargo;
     private float salario;
 
-    public Funcionario( String nomeCompleto, String CPF, String email, Date dataNascimento, float receitaMensal, String senha, String setor, String cargo, float salario )
+    public Funcionario( )
     {
-        super( nomeCompleto, CPF, email, dataNascimento, receitaMensal, senha );
-        this.setor = setor;
-        this.cargo = cargo;
-        this.salario = salario;
+        super();
     }
 
     public String getSetor( )
