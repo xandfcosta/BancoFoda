@@ -1,7 +1,8 @@
-package com.BancoFoda.BancoFoda.banco;
+package com.BancoFoda.BancoFoda.domain.model;
 
 import java.util.ArrayList;
 
+@Entity
 public class Conta
 {
     private String numero;

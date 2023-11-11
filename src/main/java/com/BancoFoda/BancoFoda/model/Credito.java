@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.banco;
+package com.BancoFoda.BancoFoda.domain.model;
 
 import java.util.ArrayList;
 
