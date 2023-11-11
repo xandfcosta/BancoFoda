@@ -17,15 +17,7 @@ public class Usuario
     @OneToOne
     private Conta conta;
 
-    public Usuario( String nomeCompleto, String CPF, String email, Date dataNascimento, float receitaMensal, String senha )
-    {
-        this.nomeCompleto = nomeCompleto;
-        this.CPF = CPF;
-        this.email = email;
-        this.dataNascimento = dataNascimento;
-        this.receitaMensal = receitaMensal;
-        this.senha = senha;
-    }
+    public Usuario() { }
 
     public String getNomeCompleto( )
     {
