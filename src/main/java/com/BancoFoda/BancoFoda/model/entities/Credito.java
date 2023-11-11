@@ -1,18 +1,28 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
-import java.util.ArrayList;
+import jakarta.persistence.*;
+import java.util.Set;
 
+@Entity
 public class Credito
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private float valorTotal;
     private float valorAtual;
-    private ArrayList< Fatura > faturas;
+    private Set< Fatura > faturas;
 
-    public Credito( float valorTotal, float valorAtual, ArrayList< Fatura > faturas )
+    public Credito(){ }
+
+    public int getId( )
     {
-        this.valorTotal = valorTotal;
-        this.valorAtual = valorAtual;
-        this.faturas = faturas;
+        return id;
+    }
+
+    public void setId( int id )
+    {
+        this.id = id;
     }
 
     public float getValorTotal( )
@@ -35,12 +45,12 @@ public class Credito
         this.valorAtual = valorAtual;
     }
 
-    public ArrayList< Fatura > getFaturas( )
+    public Set< Fatura > getFaturas( )
     {
         return faturas;
     }
 
-    public void setFaturas( ArrayList< Fatura > faturas )
+    public void setFaturas( Set< Fatura > faturas )
     {
         this.faturas = faturas;
     }
