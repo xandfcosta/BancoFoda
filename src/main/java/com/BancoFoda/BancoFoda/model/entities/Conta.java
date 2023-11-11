@@ -1,15 +1,16 @@
 package com.BancoFoda.BancoFoda.model;
 
 import java.util.ArrayList;
+import jakarta.persistence.*;
 
 public class Conta
 {
-    private String numero;
-    private String agencia;
+    private int numero;
+    private int agencia;
     private float salario;
     private ArrayList< Cartao > cartoes;
 
-    public Conta( String numero, String agencia, float salario, ArrayList< Cartao > cartoes )
+    public Conta( int numero, int agencia, float salario, ArrayList< Cartao > cartoes )
     {
         this.numero = numero;
         this.agencia = agencia;
@@ -17,22 +18,22 @@ public class Conta
         this.cartoes = cartoes;
     }
 
-    public String getNumero( )
+    public int getNumero( )
     {
         return numero;
     }
 
-    public void setNumero( String numero )
+    public void setNumero( int numero )
     {
         this.numero = numero;
     }
 
-    public String getAgencia( )
+    public int getAgencia( )
     {
         return agencia;
     }
 
-    public void setAgencia( String agencia )
+    public void setAgencia( int agencia )
     {
         this.agencia = agencia;
     }
