@@ -1,14 +1,21 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 public class Transferencia
 {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
     private float valor;
     private Date data;
     private boolean credito;
     private boolean validada;
+    @OneToOne
     private Conta origem;
+    @OneToOne
     private Conta destino;
 
     public Transferencia( float valor, Date data, boolean credito, boolean validada, Conta origem, Conta destino )
@@ -20,6 +27,10 @@ public class Transferencia
         this.origem = origem;
         this.destino = destino;
     }
+
+    public int getId( ) { return id; }
+
+    public void setId( int id ) { this.id = id; }
 
     public float getValor( )
     {
