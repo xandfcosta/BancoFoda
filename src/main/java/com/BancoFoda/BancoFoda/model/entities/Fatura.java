@@ -14,7 +14,13 @@ public class Fatura
     private Date vencimento;
     private Date dataPagamento;
 
-    public Fatura() { }
+    public Fatura( int id, float valor, Date vencimento, Date dataPagamento )
+    {
+        this.id = id;
+        this.valor = valor;
+        this.vencimento = vencimento;
+        this.dataPagamento = dataPagamento;
+    }
 
     public int getId( ) { return id; }
 

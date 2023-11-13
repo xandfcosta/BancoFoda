@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario")
 public class Usuario
 {
     @Id
@@ -14,10 +16,17 @@ public class Usuario
     private Date dataNascimento;
     private float receitaMensal;
     private String senha;
-    @OneToOne
-    private Conta conta;
 
-    public Usuario() { }
+
+    public Usuario( String CPF, String nomeCompleto, String email, Date dataNascimento, float receitaMensal, String senha )
+    {
+        this.CPF = CPF;
+        this.nomeCompleto = nomeCompleto;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.receitaMensal = receitaMensal;
+        this.senha = senha;
+    }
 
     public String getNomeCompleto( )
     {
@@ -77,15 +86,5 @@ public class Usuario
     public void setSenha( String senha )
     {
         this.senha = senha;
-    }
-
-    public Conta getConta( )
-    {
-        return conta;
-    }
-
-    public void setConta( Conta conta )
-    {
-        this.conta = conta;
     }
 }

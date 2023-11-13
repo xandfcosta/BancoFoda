@@ -1,23 +1,23 @@
 package com.BancoFoda.BancoFoda.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
+@DiscriminatorValue(value="funcionario")
 public class Funcionario extends Usuario
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     private String setor;
     private String cargo;
     private float salario;
 
-    public Funcionario( )
+    public Funcionario( String CPF, String nomeCompleto, String email, Date dataNascimento, float receitaMensal, String senha, int id, String setor, String cargo, float salario )
     {
-        super();
+        super( CPF, nomeCompleto, email, dataNascimento, receitaMensal, senha );
+        this.setor = setor;
+        this.cargo = cargo;
+        this.salario = salario;
     }
 
     public String getSetor( )
