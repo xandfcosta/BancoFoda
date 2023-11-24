@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.model.entities;
+package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
