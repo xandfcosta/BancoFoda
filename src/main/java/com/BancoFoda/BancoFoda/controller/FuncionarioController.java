@@ -19,12 +19,12 @@ public class FuncionarioController
         _funcionarioService = funcionarioService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Funcionario save( @Valid @RequestBody Funcionario funcionario){
         return _funcionarioService.save(funcionario);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Funcionario> list(){
         return _funcionarioService.list();
     }

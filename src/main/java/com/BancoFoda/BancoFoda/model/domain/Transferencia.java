@@ -12,11 +12,9 @@ public class Transferencia
     private int id;
     private float valor;
     private Date data;
-    private boolean credito;
-    private boolean validada;
-    @OneToOne
+    @ManyToOne
     private Conta origem;
-    @OneToOne
+    @ManyToOne
     private Conta destino;
 
     public Transferencia( )
@@ -45,26 +43,6 @@ public class Transferencia
     public void setData( Date data )
     {
         this.data = data;
-    }
-
-    public boolean isCredito( )
-    {
-        return credito;
-    }
-
-    public void setCredito( boolean credito )
-    {
-        this.credito = credito;
-    }
-
-    public boolean isValidada( )
-    {
-        return validada;
-    }
-
-    public void setValidada( boolean validada )
-    {
-        this.validada = validada;
     }
 
     public Conta getOrigem( )

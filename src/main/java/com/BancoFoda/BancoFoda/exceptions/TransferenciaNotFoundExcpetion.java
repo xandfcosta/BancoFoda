@@ -2,7 +2,7 @@ package com.BancoFoda.BancoFoda.exceptions;
 
 public class TransferenciaNotFoundExcpetion extends RuntimeException
 {
-    public TransferenciaNotFoundExcpetion( int id )
+    public TransferenciaNotFoundExcpetion( String id )
     {
         super( "Transferencia #" + id + " não encontrado" );
     }

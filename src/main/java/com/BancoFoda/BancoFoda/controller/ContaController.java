@@ -19,12 +19,12 @@ public class ContaController
         _contaService = contaService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Conta save( @Valid @RequestBody Conta conta){
         return _contaService.save(conta);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Conta> list(){
         return _contaService.list();
     }

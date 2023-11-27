@@ -19,12 +19,12 @@ public class CreditoController
         _creditoService = creditoService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Credito save( @Valid @RequestBody Credito credito){
         return _creditoService.save(credito);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Credito> list(){
         return _creditoService.list();
     }

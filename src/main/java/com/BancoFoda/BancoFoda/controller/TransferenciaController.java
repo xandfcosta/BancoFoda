@@ -19,31 +19,31 @@ public class TransferenciaController
         _transferenciaService = transferenciaService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Transferencia save( @Valid @RequestBody Transferencia transferencia){
         return _transferenciaService.save(transferencia);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Transferencia> list(){
         return _transferenciaService.list();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity show( @PathVariable int id){
+    public ResponseEntity show( @PathVariable String id){
         Transferencia transferencia = _transferenciaService.getById(id);
 
         return new ResponseEntity<Transferencia>(transferencia, HttpStatus.OK);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable int id, @Valid @RequestBody Transferencia transferencia){
+    public ResponseEntity update(@PathVariable String id, @Valid @RequestBody Transferencia transferencia){
         return new ResponseEntity<Transferencia>(_transferenciaService.update(id, transferencia),
                 HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity delete(@PathVariable String id) {
         _transferenciaService.deleteById(id);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);

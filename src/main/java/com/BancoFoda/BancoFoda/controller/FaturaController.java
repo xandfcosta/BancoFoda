@@ -19,12 +19,12 @@ public class FaturaController
         _faturaService = faturaService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Fatura save( @Valid @RequestBody Fatura fatura){
         return _faturaService.save(fatura);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Fatura> list(){
         return _faturaService.list();
     }

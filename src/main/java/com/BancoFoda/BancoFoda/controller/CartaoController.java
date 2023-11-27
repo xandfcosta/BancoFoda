@@ -19,12 +19,12 @@ public class CartaoController
         _cartaoService = cartaoService;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public Cartao save( @Valid @RequestBody Cartao cartao){
         return _cartaoService.save(cartao);
     }
     
-    @GetMapping
+    @GetMapping("/list")
     public List<Cartao> list(){
         return _cartaoService.list();
     }
