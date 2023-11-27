@@ -16,6 +16,5 @@ public class Cliente extends Usuario
     }
 
     public Conta getConta( ) { return conta; }
-
     public void setConta( Conta conta ) { this.conta = conta; }
 }

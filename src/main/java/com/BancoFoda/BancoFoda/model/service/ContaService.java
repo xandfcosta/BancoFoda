@@ -39,7 +39,6 @@ public class ContaService
         Conta contaAux = this.getById(id);
 
         contaAux.setAgencia(conta.getAgencia());
-        contaAux.setSalario(conta.getSalario());
         contaAux.setCartoes(conta.getCartoes());
 
         return _contaRepository.save(contaAux);

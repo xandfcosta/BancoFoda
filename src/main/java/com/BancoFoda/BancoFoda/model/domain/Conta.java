@@ -11,7 +11,7 @@ public class Conta
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int numero;
     private int agencia;
-    private float salario;
+    private float saldo;
     @OneToMany
     @JoinColumn(name="conta_id")
     private Set< Cartao > cartoes;
@@ -43,14 +43,14 @@ public class Conta
         this.agencia = agencia;
     }
 
-    public float getSalario( )
+    public float getSaldo( )
     {
-        return salario;
+        return saldo;
     }
 
-    public void setSalario( float salario )
+    public void setSaldo( float saldo )
     {
-        this.salario = salario;
+        this.saldo = saldo;
     }
 
     public Set< Cartao > getCartoes( )
