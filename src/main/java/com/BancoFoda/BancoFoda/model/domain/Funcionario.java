@@ -12,12 +12,8 @@ public class Funcionario extends Usuario
     private String cargo;
     private float salario;
 
-    public Funcionario( String CPF, String nomeCompleto, String email, Date dataNascimento, float receitaMensal, String senha, int id, String setor, String cargo, float salario )
+    public Funcionario( )
     {
-        super( CPF, nomeCompleto, email, dataNascimento, receitaMensal, senha );
-        this.setor = setor;
-        this.cargo = cargo;
-        this.salario = salario;
     }
 
     public String getSetor( )

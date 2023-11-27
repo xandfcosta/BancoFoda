@@ -19,14 +19,8 @@ public class Transferencia
     @OneToOne
     private Conta destino;
 
-    public Transferencia( float valor, Date data, boolean credito, boolean validada, Conta origem, Conta destino )
+    public Transferencia( )
     {
-        this.valor = valor;
-        this.data = data;
-        this.credito = credito;
-        this.validada = validada;
-        this.origem = origem;
-        this.destino = destino;
     }
 
     public int getId( ) { return id; }
