@@ -1,8 +1,6 @@
-package com.BancoFoda.BancoFoda.model.entities;
+package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
-
-import java.util.Set;
 
 @Entity
 public class Credito
@@ -13,11 +11,8 @@ public class Credito
     private float valorTotal;
     private float valorAtual;
 
-    public Credito( int id, float valorTotal, float valorAtual )
+    public Credito( )
     {
-        this.id = id;
-        this.valorTotal = valorTotal;
-        this.valorAtual = valorAtual;
     }
 
     public int getId( )

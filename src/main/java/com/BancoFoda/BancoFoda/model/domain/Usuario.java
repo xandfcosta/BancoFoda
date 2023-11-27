@@ -1,11 +1,11 @@
-package com.BancoFoda.BancoFoda.model.entities;
+package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "tipo_usuario")
 public class Usuario
 {
@@ -13,19 +13,13 @@ public class Usuario
     private String CPF;
     private String nomeCompleto;
     private String email;
+    @Temporal(TemporalType.DATE)
     private Date dataNascimento;
     private float receitaMensal;
     private String senha;
 
-
-    public Usuario( String CPF, String nomeCompleto, String email, Date dataNascimento, float receitaMensal, String senha )
+    public Usuario( )
     {
-        this.CPF = CPF;
-        this.nomeCompleto = nomeCompleto;
-        this.email = email;
-        this.dataNascimento = dataNascimento;
-        this.receitaMensal = receitaMensal;
-        this.senha = senha;
     }
 
     public String getNomeCompleto( )

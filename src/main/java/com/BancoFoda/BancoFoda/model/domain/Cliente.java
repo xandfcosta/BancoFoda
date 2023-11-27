@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.model.entities;
+package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
@@ -11,10 +11,8 @@ public class Cliente extends Usuario
     @OneToOne
     private Conta conta;
 
-    public Cliente( String CPF, String nomeCompleto, String email, Date dataNascimento, float receitaMensal, String senha, Conta conta )
+    public Cliente( )
     {
-        super( CPF, nomeCompleto, email, dataNascimento, receitaMensal, senha );
-        this.conta = conta;
     }
 
     public Conta getConta( ) { return conta; }

@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.model.entities;
+package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
@@ -19,13 +19,8 @@ public class Conta
     @JoinColumn(name="conta_id")
     private Set< Fatura > faturas;
 
-    public Conta( int numero, int agencia, float salario, Set< Cartao > cartoes, Set< Fatura > faturas )
+    public Conta( )
     {
-        this.numero = numero;
-        this.agencia = agencia;
-        this.salario = salario;
-        this.cartoes = cartoes;
-        this.faturas = faturas;
     }
 
     public int getNumero( )
