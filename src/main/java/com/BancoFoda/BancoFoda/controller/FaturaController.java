@@ -1,5 +1,6 @@
 package com.BancoFoda.BancoFoda.controller;
 
+import com.BancoFoda.BancoFoda.model.domain.Compra;
 import com.BancoFoda.BancoFoda.model.domain.Fatura;
 import com.BancoFoda.BancoFoda.model.service.FaturaService;
 import jakarta.validation.Valid;

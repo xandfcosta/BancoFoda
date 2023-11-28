@@ -1,6 +1,7 @@
 package com.BancoFoda.BancoFoda.controller;
 
 import com.BancoFoda.BancoFoda.model.domain.Cartao;
+import com.BancoFoda.BancoFoda.model.domain.Compra;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.service.CartaoService;
 import jakarta.validation.Valid;
@@ -48,5 +49,13 @@ public class CartaoController
         _cartaoService.deleteById(id);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/{id}/compra")
+    public ResponseEntity compraNova(@PathVariable String id, @Valid @RequestBody Compra compra) {
+        Cartao cartaoAux = _cartaoService.compraNova( id, compra );
+
+        return new ResponseEntity<Cartao>( _cartaoService.update( id, cartaoAux ),
+                HttpStatus.OK);
     }
 }

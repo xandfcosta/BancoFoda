@@ -2,7 +2,8 @@ package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Fatura
@@ -11,11 +12,22 @@ public class Fatura
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private float valor;
-    private Date vencimento;
-    private Date dataPagamento;
+    private LocalDate vencimento;
+    private LocalDate dataPagamento;
+    @OneToMany
+    @JoinColumn(name="fatura_id")
+    private Set< Compra > compras;
 
     public Fatura( )
     {
+    }
+
+    public Set<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(Set<Compra> compras) {
+        this.compras = compras;
     }
 
     public int getId( ) { return id; }
@@ -32,22 +44,22 @@ public class Fatura
         this.valor = valor;
     }
 
-    public Date getVencimento( )
+    public LocalDate getVencimento( )
     {
         return vencimento;
     }
 
-    public void setVencimento( Date vencimento )
+    public void setVencimento( LocalDate vencimento )
     {
         this.vencimento = vencimento;
     }
 
-    public Date getDataPagamento( )
+    public LocalDate getDataPagamento( )
     {
         return dataPagamento;
     }
 
-    public void setDataPagamento( Date dataPagamento )
+    public void setDataPagamento( LocalDate dataPagamento )
     {
         this.dataPagamento = dataPagamento;
     }

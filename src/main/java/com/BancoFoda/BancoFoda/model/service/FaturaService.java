@@ -1,7 +1,9 @@
 package com.BancoFoda.BancoFoda.model.service;
 
-import com.BancoFoda.BancoFoda.exceptions.FaturaNotFoundExcpetion;
+import com.BancoFoda.BancoFoda.exceptions.FaturaNotFoundException;
+import com.BancoFoda.BancoFoda.model.domain.Compra;
 import com.BancoFoda.BancoFoda.model.domain.Fatura;
+import com.BancoFoda.BancoFoda.model.repository.CompraRepository;
 import com.BancoFoda.BancoFoda.model.repository.FaturaRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,12 @@ import java.util.Optional;
 public class FaturaService
 {
     private final FaturaRepository _faturaRepository;
+    private final CompraRepository _compraRepository;
 
-    public FaturaService( FaturaRepository faturaRepository )
+    public FaturaService(FaturaRepository faturaRepository, CompraRepository compraRepository )
     {
         _faturaRepository = faturaRepository;
+        _compraRepository = compraRepository;
     }
 
     public Fatura save( Fatura fatura){
@@ -26,16 +30,16 @@ public class FaturaService
         return _faturaRepository.findAll();
     }
 
-    public Fatura getById(int id) throws FaturaNotFoundExcpetion{
+    public Fatura getById(int id) throws FaturaNotFoundException {
         Optional<Fatura> opt = _faturaRepository.findById(id);
 
         if( opt.isEmpty() ){
-            throw new FaturaNotFoundExcpetion(id);
+            throw new FaturaNotFoundException(id);
         }
         return opt.get();
     }
 
-    public Fatura update(int id, Fatura fatura) throws FaturaNotFoundExcpetion{
+    public Fatura update(int id, Fatura fatura) throws FaturaNotFoundException {
         Fatura faturaAux = this.getById(id);
 
         faturaAux.setValor(fatura.getValor());
@@ -45,9 +49,9 @@ public class FaturaService
         return _faturaRepository.save(faturaAux);
     }
 
-    public void deleteById(int id) throws FaturaNotFoundExcpetion{
+    public void deleteById(int id) throws FaturaNotFoundException {
         if(!_faturaRepository.existsById(id)){
-            throw new FaturaNotFoundExcpetion(id);
+            throw new FaturaNotFoundException(id);
         }
 
         _faturaRepository.deleteById(id);

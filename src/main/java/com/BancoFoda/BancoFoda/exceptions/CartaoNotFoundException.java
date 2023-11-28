@@ -1,8 +1,8 @@
 package com.BancoFoda.BancoFoda.exceptions;
 
-public class CartaoNotFoundExcpetion extends RuntimeException
+public class CartaoNotFoundException extends RuntimeException
 {
-    public CartaoNotFoundExcpetion( String id )
+    public CartaoNotFoundException(String id )
     {
         super( "Cartao #" + id + " não encontrado" );
     }

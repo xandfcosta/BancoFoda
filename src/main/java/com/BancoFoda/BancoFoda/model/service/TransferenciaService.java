@@ -1,8 +1,7 @@
 package com.BancoFoda.BancoFoda.model.service;
 
-import com.BancoFoda.BancoFoda.exceptions.TransferenciaNotFoundExcpetion;
+import com.BancoFoda.BancoFoda.exceptions.TransferenciaNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.*;
-import com.BancoFoda.BancoFoda.model.repository.ContaRepository;
 import com.BancoFoda.BancoFoda.model.repository.TransferenciaRepository;
 import org.springframework.stereotype.Service;
 
@@ -68,16 +67,16 @@ public class TransferenciaService
         return _transferenciaRepository.findAll();
     }
 
-    public Transferencia getById(String id) throws TransferenciaNotFoundExcpetion{
+    public Transferencia getById(String id) throws TransferenciaNotFoundException {
         Optional<Transferencia> opt = _transferenciaRepository.findById(id);
 
         if( opt.isEmpty() ){
-            throw new TransferenciaNotFoundExcpetion(id);
+            throw new TransferenciaNotFoundException(id);
         }
         return opt.get();
     }
 
-    public Transferencia update(String id, Transferencia transferencia) throws TransferenciaNotFoundExcpetion{
+    public Transferencia update(String id, Transferencia transferencia) throws TransferenciaNotFoundException {
         Transferencia transferenciaAux = this.getById(id);
 
         transferenciaAux.setValor(transferencia.getValor());
@@ -89,9 +88,9 @@ public class TransferenciaService
         return _transferenciaRepository.save(transferenciaAux);
     }
 
-    public void deleteById(String id) throws TransferenciaNotFoundExcpetion{
+    public void deleteById(String id) throws TransferenciaNotFoundException {
         if(!_transferenciaRepository.existsById(id)){
-            throw new TransferenciaNotFoundExcpetion(id);
+            throw new TransferenciaNotFoundException(id);
         }
 
         _transferenciaRepository.deleteById(id);

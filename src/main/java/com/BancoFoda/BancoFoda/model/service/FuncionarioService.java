@@ -1,6 +1,6 @@
 package com.BancoFoda.BancoFoda.model.service;
 
-import com.BancoFoda.BancoFoda.exceptions.FuncionarioNotFoundExcpetion;
+import com.BancoFoda.BancoFoda.exceptions.FuncionarioNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.Funcionario;
 import com.BancoFoda.BancoFoda.model.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
@@ -26,16 +26,16 @@ public class FuncionarioService
         return _funcionarioRepository.findAll();
     }
 
-    public Funcionario getById(String id) throws FuncionarioNotFoundExcpetion{
+    public Funcionario getById(String id) throws FuncionarioNotFoundException {
         Optional<Funcionario> opt = _funcionarioRepository.findById(id);
 
         if( opt.isEmpty() ){
-            throw new FuncionarioNotFoundExcpetion(id);
+            throw new FuncionarioNotFoundException(id);
         }
         return opt.get();
     }
 
-    public Funcionario update(String id, Funcionario funcionario) throws FuncionarioNotFoundExcpetion{
+    public Funcionario update(String id, Funcionario funcionario) throws FuncionarioNotFoundException {
         Funcionario funcionarioAux = this.getById(id);
 
         funcionarioAux.setNomeCompleto(funcionario.getNomeCompleto());
@@ -47,9 +47,9 @@ public class FuncionarioService
         return _funcionarioRepository.save(funcionarioAux);
     }
 
-    public void deleteById(String id) throws FuncionarioNotFoundExcpetion{
+    public void deleteById(String id) throws FuncionarioNotFoundException {
         if(!_funcionarioRepository.existsById(id)){
-            throw new FuncionarioNotFoundExcpetion(id);
+            throw new FuncionarioNotFoundException(id);
         }
 
         _funcionarioRepository.deleteById(id);

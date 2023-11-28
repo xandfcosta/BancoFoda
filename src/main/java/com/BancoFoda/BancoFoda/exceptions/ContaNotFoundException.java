@@ -1,8 +1,8 @@
 package com.BancoFoda.BancoFoda.exceptions;
 
-public class ContaNotFoundExcpetion extends RuntimeException
+public class ContaNotFoundException extends RuntimeException
 {
-    public ContaNotFoundExcpetion( int id )
+    public ContaNotFoundException(int id )
     {
         super( "Conta #" + id + " não encontrado" );
     }

@@ -1,6 +1,6 @@
 package com.BancoFoda.BancoFoda.model.service;
 
-import com.BancoFoda.BancoFoda.exceptions.ContaNotFoundExcpetion;
+import com.BancoFoda.BancoFoda.exceptions.ContaNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.Cartao;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.repository.ContaRepository;
@@ -29,16 +29,16 @@ public class ContaService
         return _contaRepository.findAll();
     }
 
-    public Conta getById(int id) throws ContaNotFoundExcpetion{
+    public Conta getById(int id) throws ContaNotFoundException {
         Optional<Conta> opt = _contaRepository.findById(id);
 
         if( opt.isEmpty() ){
-            throw new ContaNotFoundExcpetion(id);
+            throw new ContaNotFoundException(id);
         }
         return opt.get();
     }
 
-    public Conta update(int id, Conta conta) throws ContaNotFoundExcpetion{
+    public Conta update(int id, Conta conta) throws ContaNotFoundException {
         Conta contaAux = this.getById(id);
 
         contaAux.setAgencia(conta.getAgencia());
@@ -47,9 +47,9 @@ public class ContaService
         return _contaRepository.save(contaAux);
     }
 
-    public void deleteById(int id) throws ContaNotFoundExcpetion{
+    public void deleteById(int id) throws ContaNotFoundException {
         if(!_contaRepository.existsById(id)){
-            throw new ContaNotFoundExcpetion(id);
+            throw new ContaNotFoundException(id);
         }
 
         _contaRepository.deleteById(id);

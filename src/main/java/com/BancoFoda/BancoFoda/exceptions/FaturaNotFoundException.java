@@ -1,8 +1,8 @@
 package com.BancoFoda.BancoFoda.exceptions;
 
-public class FaturaNotFoundExcpetion extends RuntimeException
+public class FaturaNotFoundException extends RuntimeException
 {
-    public FaturaNotFoundExcpetion( int id )
+    public FaturaNotFoundException(int id )
     {
         super( "Fatura #" + id + " não encontrado" );
     }

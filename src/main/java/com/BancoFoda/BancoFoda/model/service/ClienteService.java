@@ -1,6 +1,6 @@
 package com.BancoFoda.BancoFoda.model.service;
 
-import com.BancoFoda.BancoFoda.exceptions.ClienteNotFoundExcpetion;
+import com.BancoFoda.BancoFoda.exceptions.ClienteNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.*;
 import com.BancoFoda.BancoFoda.model.repository.ClienteRepository;
 import com.BancoFoda.BancoFoda.model.repository.ContaRepository;
@@ -9,13 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ClienteService
 {
     private final ClienteRepository _clienteRepository;
-
     private final ContaRepository _contaRepository;
 
     public ClienteService( ClienteRepository clienteRepository, ContaRepository contaRepository )
@@ -52,16 +50,16 @@ public class ClienteService
         return _clienteRepository.findAll();
     }
 
-    public Cliente getById(String id) throws ClienteNotFoundExcpetion{
+    public Cliente getById(String id) throws ClienteNotFoundException {
         Optional<Cliente> opt = _clienteRepository.findById(id);
 
         if( opt.isEmpty() ){
-            throw new ClienteNotFoundExcpetion(id);
+            throw new ClienteNotFoundException(id);
         }
         return opt.get();
     }
 
-    public Cliente update(String id, Cliente cliente) throws ClienteNotFoundExcpetion{
+    public Cliente update(String id, Cliente cliente) throws ClienteNotFoundException {
         Cliente clienteAux = this.getById(id);
 
         clienteAux.setNomeCompleto(cliente.getNomeCompleto());
@@ -73,9 +71,9 @@ public class ClienteService
         return _clienteRepository.save(clienteAux);
     }
 
-    public void deleteById(String id) throws ClienteNotFoundExcpetion{
+    public void deleteById(String id) throws ClienteNotFoundException {
         if(!_clienteRepository.existsById(id)){
-            throw new ClienteNotFoundExcpetion(id);
+            throw new ClienteNotFoundException(id);
         }
 
         _clienteRepository.deleteById(id);

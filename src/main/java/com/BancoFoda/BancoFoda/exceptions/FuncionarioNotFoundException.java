@@ -1,8 +1,8 @@
 package com.BancoFoda.BancoFoda.exceptions;
 
-public class FuncionarioNotFoundExcpetion extends RuntimeException
+public class FuncionarioNotFoundException extends RuntimeException
 {
-    public FuncionarioNotFoundExcpetion( String id )
+    public FuncionarioNotFoundException(String id )
     {
         super( "Funcionario #" + id + " não encontrado" );
     }
