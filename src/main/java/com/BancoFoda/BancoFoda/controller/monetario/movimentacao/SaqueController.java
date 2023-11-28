@@ -19,7 +19,7 @@ public class SaqueController
         _saqueService = saqueService;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Saque save( @Valid @RequestBody Saque saque){
         return _saqueService.save(saque);
     }

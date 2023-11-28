@@ -3,6 +3,7 @@ package com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ public class Movimentacao
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private float valor;
-    private Date data;
+    private LocalDate data;
 
     public Movimentacao( )
     {
@@ -34,12 +35,12 @@ public class Movimentacao
         this.valor = valor;
     }
 
-    public Date getData( )
+    public LocalDate getData( )
     {
         return data;
     }
 
-    public void setData( Date data )
+    public void setData( LocalDate data )
     {
         this.data = data;
     }

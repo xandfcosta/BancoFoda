@@ -19,7 +19,7 @@ public class ContaController
         _contaService = contaService;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Conta save( @Valid @RequestBody Conta conta){
         return _contaService.save(conta);
     }
@@ -30,30 +30,22 @@ public class ContaController
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity show( @PathVariable int id){
+    public ResponseEntity<Conta> show( @PathVariable int id){
         Conta conta = _contaService.getById(id);
 
         return new ResponseEntity<Conta>(conta, HttpStatus.OK);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable int id, @Valid @RequestBody Conta conta){
+    public ResponseEntity<Conta> update(@PathVariable int id, @Valid @RequestBody Conta conta){
         return new ResponseEntity<Conta>(_contaService.update(id, conta),
                 HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable int id) {
+    public ResponseEntity<Conta> delete(@PathVariable int id) {
         _contaService.deleteById(id);
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
-    @PostMapping("/novo-cartao")
-    public ResponseEntity criarCartao(@Valid @RequestBody Conta conta)
-    {
-        Conta aux = _contaService.getById(conta.getNumero());
-
-        return new ResponseEntity<Conta>(_contaService.criarCartao(aux), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

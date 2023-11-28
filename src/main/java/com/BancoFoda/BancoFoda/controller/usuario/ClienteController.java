@@ -19,10 +19,8 @@ public class ClienteController
         _clienteService = clienteService;
     }
 
-    @PostMapping("/save")
-    public Cliente save( @Valid @RequestBody Cliente cliente){
-        return _clienteService.save(cliente);
-    }
+    @PostMapping
+    public Cliente save( @Valid @RequestBody Cliente cliente){ return _clienteService.save(cliente); }
 
     @GetMapping("/list")
     public List<Cliente> list(){

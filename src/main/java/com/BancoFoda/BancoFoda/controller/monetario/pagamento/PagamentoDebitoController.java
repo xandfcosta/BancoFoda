@@ -19,9 +19,9 @@ public class PagamentoDebitoController
         this._pagamentoDebitoService = _pagamentoDebitoService;
     }
 
-    @PostMapping("/save")
-    public PagamentoDebito save( @Valid @RequestBody PagamentoDebito pagamentoDebito){
-        return _pagamentoDebitoService.save(pagamentoDebito);
+    @PostMapping
+    public PagamentoDebito save( @RequestParam int numeroConta, @Valid @RequestBody PagamentoDebito pagamentoDebito){
+        return _pagamentoDebitoService.save(numeroConta, pagamentoDebito);
     }
 
     @GetMapping("/list")

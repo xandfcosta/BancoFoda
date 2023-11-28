@@ -1,11 +1,13 @@
 package com.BancoFoda.BancoFoda.model.domain.usuario;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_usuario")
 public class Usuario
 {
@@ -14,7 +16,7 @@ public class Usuario
     private String nomeCompleto;
     private String email;
     @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private float receitaMensal;
     private String senha;
 
@@ -52,12 +54,12 @@ public class Usuario
         this.email = email;
     }
 
-    public Date getDataNascimento( )
+    public LocalDate getDataNascimento( )
     {
         return dataNascimento;
     }
 
-    public void setDataNascimento( Date dataNascimento )
+    public void setDataNascimento( LocalDate dataNascimento )
     {
         this.dataNascimento = dataNascimento;
     }
@@ -82,7 +84,7 @@ public class Usuario
         this.senha = senha;
     }
 
-    private static int calcularDigito(String str, int[] peso) {
+    private static int calcularDigitoParaCPF(String str, int[] peso) {
         int soma = 0;
         for (int indice=str.length()-1, digito; indice >= 0; indice-- ) {
             digito = Integer.parseInt(str.substring(indice,indice+1));
@@ -91,13 +93,20 @@ public class Usuario
         soma = 11 - soma % 11;
         return soma > 9 ? 0 : soma;
     }
-    public static boolean validarCPF(String cpf) {
+
+    public static boolean validarCPF(String cpf)
+    {
         if ((cpf==null) || (cpf.length()!=11)) return false;
 
         int[] pesoCPF = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
-        int digito1 = calcularDigito(cpf.substring(0,9), pesoCPF);
-        int digito2 = calcularDigito(cpf.substring(0,9) + digito1, pesoCPF);
+        int digito1 = calcularDigitoParaCPF(cpf.substring(0,9), pesoCPF);
+        int digito2 = calcularDigitoParaCPF(cpf.substring(0,9) + digito1, pesoCPF);
         return cpf.equals(cpf.substring(0,9) + digito1 + digito2);
+    }
+
+    public static boolean maiorDeIdade( LocalDate dataNascimento)
+    {
+        return LocalDate.now().getYear() - dataNascimento.getYear() >= 18;
     }
 }

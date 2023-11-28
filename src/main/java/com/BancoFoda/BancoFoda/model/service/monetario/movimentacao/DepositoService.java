@@ -4,9 +4,12 @@ import com.BancoFoda.BancoFoda.exceptions.MovimentacaoNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao.Deposito;
 import com.BancoFoda.BancoFoda.model.repository.monetario.movimentacao.DepositoRepository;
+import com.BancoFoda.BancoFoda.model.repository.monetario.movimentacao.SaqueRepository;
 import com.BancoFoda.BancoFoda.model.service.ContaService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -25,9 +28,13 @@ public class DepositoService
 
     public Deposito save( Deposito deposito )
     {
-        // TODO
+        deposito.setData( LocalDate.now() );
 
-        deposito.setData( new Date(  ) );
+        Conta conta = _contaService.getById( deposito.getConta().getNumero() );
+
+        conta.setSaldo( conta.getSaldo() + deposito.getValor() );
+
+        _contaService.update( conta.getNumero(), conta );
 
         return _depositoRepository.save(deposito);
     }

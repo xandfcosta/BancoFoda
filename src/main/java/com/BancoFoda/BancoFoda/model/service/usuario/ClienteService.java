@@ -26,14 +26,15 @@ public class ClienteService
 
     public Cliente save( Cliente cliente ){
         if(!Usuario.validarCPF(cliente.getCPF())) throw new Error("CPF invalido");
-        Conta contaCliente = new Conta();
+        if(!Usuario.maiorDeIdade(cliente.getDataNascimento())) throw new Error("Menor de idade");
 
-        contaCliente.setSaldo( 0 );
-        contaCliente.setAgencia( 1 );
-        contaCliente.setReceitaMensalUsuario( cliente.getReceitaMensal() );
-        _contaRepository.save( contaCliente );
+        Conta conta = new Conta();
 
-        cliente.setConta( contaCliente );
+        conta.setSaldo( 0 );
+        conta.setAgencia( 1 );
+        conta.setReceitaMensalUsuario( cliente.getReceitaMensal() );
+
+        cliente.setConta( conta );
 
         return _clienteRepository.save(cliente);
     }

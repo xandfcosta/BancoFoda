@@ -19,7 +19,7 @@ public class DepositoController
         _depositoService = depositoService;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Deposito save( @Valid @RequestBody Deposito deposito){
         return _depositoService.save(deposito);
     }

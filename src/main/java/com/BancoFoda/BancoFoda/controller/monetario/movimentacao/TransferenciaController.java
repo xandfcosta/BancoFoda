@@ -19,7 +19,7 @@ public class TransferenciaController
         _transferenciaService = transferenciaService;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public Transferencia save( @Valid @RequestBody Transferencia transferencia){
         return _transferenciaService.save(transferencia);
     }
