@@ -1,5 +1,6 @@
 package com.BancoFoda.BancoFoda.model.domain;
 
+import com.BancoFoda.BancoFoda.model.domain.monetario.pagamento.Pagamento;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -12,10 +13,9 @@ public class Conta
     private int numero;
     private int agencia;
     private float saldo;
-    @OneToMany
-    @JoinColumn(name="conta_id")
-    private Set< Cartao > cartoes;
     private float receitaMensalUsuario;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set< Pagamento > pagamentos;
 
     public Conta( )
     {
@@ -59,13 +59,13 @@ public class Conta
         this.saldo = saldo;
     }
 
-    public Set< Cartao > getCartoes( )
+    public Set< Pagamento > getPagamentos( )
     {
-        return cartoes;
+        return pagamentos;
     }
 
-    public void setCartoes( Set< Cartao > cartoes )
+    public void setPagamentos( Set< Pagamento > pagamentos )
     {
-        this.cartoes = cartoes;
+        this.pagamentos = pagamentos;
     }
 }
