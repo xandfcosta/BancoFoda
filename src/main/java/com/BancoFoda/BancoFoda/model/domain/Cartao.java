@@ -2,7 +2,7 @@ package com.BancoFoda.BancoFoda.model.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Cartao
@@ -10,30 +10,48 @@ public class Cartao
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String numero;
-    private boolean credito;
-    private Date validade;
+    private LocalDate validade;
     private String codigoValidacao;
+    private float creditoTotal;
+    private float creditoAtual;
+    @OneToOne
+    @JoinColumn(name="cartao_id")
+    private Fatura fatura;
 
     public Cartao( )
     {
     }
 
-    public boolean isCredito( )
-    {
-        return credito;
+    public Fatura getFatura() {
+        return fatura;
     }
 
-    public void setCredito( boolean credito )
-    {
-        this.credito = credito;
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
     }
 
-    public Date getValidade( )
+    public float getCreditoTotal() {
+        return creditoTotal;
+    }
+
+    public void setCreditoTotal(float creditoTotal) {
+        this.creditoTotal = creditoTotal;
+    }
+
+    public float getCreditoAtual() {
+        return creditoAtual;
+    }
+
+    public void setCreditoAtual(float creditoAtual) {
+        this.creditoAtual = creditoAtual;
+    }
+
+    public LocalDate getValidade( )
     {
         return validade;
     }
 
-    public void setValidade( Date validade )
+    public void setValidade( LocalDate validade )
     {
         this.validade = validade;
     }

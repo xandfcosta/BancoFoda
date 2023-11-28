@@ -15,12 +15,18 @@ public class Conta
     @OneToMany
     @JoinColumn(name="conta_id")
     private Set< Cartao > cartoes;
-    @OneToMany
-    @JoinColumn(name="conta_id")
-    private Set< Fatura > faturas;
+    private float receitaMensalUsuario;
 
     public Conta( )
     {
+    }
+
+    public float getReceitaMensalUsuario() {
+        return receitaMensalUsuario;
+    }
+
+    public void setReceitaMensalUsuario(float receitaMensalUsuario) {
+        this.receitaMensalUsuario = receitaMensalUsuario;
     }
 
     public int getNumero( )
@@ -62,8 +68,4 @@ public class Conta
     {
         this.cartoes = cartoes;
     }
-
-    public Set< Fatura > getFaturas( ) { return faturas; }
-
-    public void setFaturas( Set< Fatura > faturas ) { this.faturas = faturas; }
 }
