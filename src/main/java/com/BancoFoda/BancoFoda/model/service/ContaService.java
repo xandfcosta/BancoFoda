@@ -1,7 +1,6 @@
 package com.BancoFoda.BancoFoda.model.service;
 
 import com.BancoFoda.BancoFoda.exceptions.ContaNotFoundException;
-import com.BancoFoda.BancoFoda.model.domain.Cartao;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.repository.ContaRepository;
 import org.springframework.stereotype.Service;

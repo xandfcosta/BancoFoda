@@ -12,9 +12,6 @@ public class Conta
     private int numero;
     private int agencia;
     private float saldo;
-    @OneToMany
-    @JoinColumn(name="conta_id")
-    private Set< Cartao > cartoes;
     private float receitaMensalUsuario;
 
     public Conta( )
@@ -57,15 +54,5 @@ public class Conta
     public void setSaldo( float saldo )
     {
         this.saldo = saldo;
-    }
-
-    public Set< Cartao > getCartoes( )
-    {
-        return cartoes;
-    }
-
-    public void setCartoes( Set< Cartao > cartoes )
-    {
-        this.cartoes = cartoes;
     }
 }
