@@ -15,12 +15,19 @@ public class Conta
     @OneToMany
     @JoinColumn(name="conta_id")
     private Set< Cartao > cartoes;
-    @OneToMany
-    @JoinColumn(name="conta_id")
-    private Set< Fatura > faturas;
+    @OneToOne(mappedBy="conta", cascade = CascadeType.PERSIST)
+    private Cliente cliente;
 
     public Conta( )
     {
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public int getNumero( )
@@ -62,8 +69,4 @@ public class Conta
     {
         this.cartoes = cartoes;
     }
-
-    public Set< Fatura > getFaturas( ) { return faturas; }
-
-    public void setFaturas( Set< Fatura > faturas ) { this.faturas = faturas; }
 }

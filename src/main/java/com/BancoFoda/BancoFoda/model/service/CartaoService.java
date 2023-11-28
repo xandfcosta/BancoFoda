@@ -38,7 +38,9 @@ public class CartaoService
     public Cartao update(String id, Cartao cartao) throws CartaoNotFoundExcpetion{
         Cartao cartaoAux = this.getById(id);
 
-        cartaoAux.setCredito(cartao.isCredito());
+        cartaoAux.setCreditoTotal(cartao.getCreditoTotal());
+        cartaoAux.setFatura(cartao.getFatura());
+        cartaoAux.setCreditoAtual(cartao.getCreditoAtual());
         cartaoAux.setValidade(cartao.getValidade());
         cartaoAux.setCodigoValidacao(cartao.getCodigoValidacao());
 

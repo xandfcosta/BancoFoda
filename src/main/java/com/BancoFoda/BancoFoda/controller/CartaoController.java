@@ -1,6 +1,7 @@
 package com.BancoFoda.BancoFoda.controller;
 
 import com.BancoFoda.BancoFoda.model.domain.Cartao;
+import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.service.CartaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

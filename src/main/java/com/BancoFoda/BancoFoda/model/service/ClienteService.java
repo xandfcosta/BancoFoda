@@ -28,11 +28,19 @@ public class ClienteService
         if(!Usuario.validarCPF(cliente.getCPF())) throw new Error("CPF invalido");
         Conta contaCliente = new Conta();
 
-        contaCliente.setSaldo( 0 );
-        contaCliente.setCartoes( new HashSet<Cartao>( ));
-        contaCliente.setAgencia( 1 );
-        contaCliente.setFaturas( new HashSet< Fatura >(  ) );
+        HashSet<Cartao> cartoes = new HashSet<Cartao>( );
 
+        Cartao cartao = new Cartao( );
+        cartao.setCreditoTotal( 0 );
+        cartao.setCreditoAtual( 0 );
+        cartao.setValidade( null );
+
+        cartoes.add( cartao );
+
+        contaCliente.setSaldo( 0 );
+        contaCliente.setCartoes( cartoes );
+        contaCliente.setAgencia( 1 );
+        contaCliente.setCliente( cliente );
         _contaRepository.save( contaCliente );
 
         cliente.setConta( contaCliente );
