@@ -40,7 +40,7 @@ public class ClienteService
         contaCliente.setSaldo( 0 );
         contaCliente.setCartoes( cartoes );
         contaCliente.setAgencia( 1 );
-        contaCliente.setCliente( cliente );
+        contaCliente.setReceitaMensalUsuario( cliente.getReceitaMensal() );
         _contaRepository.save( contaCliente );
 
         cliente.setConta( contaCliente );

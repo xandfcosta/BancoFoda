@@ -15,19 +15,18 @@ public class Conta
     @OneToMany
     @JoinColumn(name="conta_id")
     private Set< Cartao > cartoes;
-    @OneToOne(mappedBy="conta", cascade = CascadeType.PERSIST)
-    private Cliente cliente;
+    private float receitaMensalUsuario;
 
     public Conta( )
     {
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public float getReceitaMensalUsuario() {
+        return receitaMensalUsuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setReceitaMensalUsuario(float receitaMensalUsuario) {
+        this.receitaMensalUsuario = receitaMensalUsuario;
     }
 
     public int getNumero( )
