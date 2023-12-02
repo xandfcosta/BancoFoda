@@ -9,10 +9,7 @@ import com.BancoFoda.BancoFoda.model.service.ContaService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class DepositoService
@@ -32,9 +29,7 @@ public class DepositoService
 
         Conta conta = _contaService.getById( deposito.getConta().getNumero() );
 
-        conta.setSaldo( conta.getSaldo() + deposito.getValor() );
-
-        _contaService.update( conta.getNumero(), conta );
+        conta.addDepositos( deposito );
 
         return _depositoRepository.save(deposito);
     }

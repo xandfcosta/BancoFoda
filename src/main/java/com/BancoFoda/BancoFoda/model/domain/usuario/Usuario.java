@@ -1,10 +1,9 @@
 package com.BancoFoda.BancoFoda.model.domain.usuario;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -12,12 +11,24 @@ import java.util.Date;
 public class Usuario
 {
     @Id
+    @Column(columnDefinition = "varchar(11)")
     private String CPF;
+    @NotNull
+    @NotBlank
     private String nomeCompleto;
+    @NotNull
+    @NotBlank
+    @Email
     private String email;
+    @NotNull
+    @Past
     @Temporal(TemporalType.DATE)
     private LocalDate dataNascimento;
+    @NotNull
+    @PositiveOrZero
     private float receitaMensal;
+    @NotNull
+    @NotBlank
     private String senha;
 
     public Usuario( )

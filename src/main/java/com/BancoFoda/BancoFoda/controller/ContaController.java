@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/conta")
@@ -47,5 +48,11 @@ public class ContaController
         _contaService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/filtrar")
+    public List<Conta> filtrar(@RequestParam Map<String, String> params)
+    {
+        return _contaService.filtrar( params );
     }
 }

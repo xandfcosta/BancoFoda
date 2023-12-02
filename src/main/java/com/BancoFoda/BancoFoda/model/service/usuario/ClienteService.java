@@ -16,12 +16,10 @@ import java.util.Optional;
 public class ClienteService
 {
     private final ClienteRepository _clienteRepository;
-    private final ContaRepository _contaRepository;
 
-    public ClienteService( ClienteRepository clienteRepository, ContaRepository contaRepository )
+    public ClienteService( ClienteRepository clienteRepository )
     {
         _clienteRepository = clienteRepository;
-        _contaRepository = contaRepository;
     }
 
     public Cliente save( Cliente cliente ){
@@ -32,7 +30,6 @@ public class ClienteService
 
         conta.setSaldo( 0 );
         conta.setAgencia( 1 );
-        conta.setReceitaMensalUsuario( cliente.getReceitaMensal() );
 
         cliente.setConta( conta );
 
