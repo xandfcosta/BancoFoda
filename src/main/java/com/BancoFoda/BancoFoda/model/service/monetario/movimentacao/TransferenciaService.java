@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -33,11 +34,8 @@ public class TransferenciaService
 
         Conta contaDestino = _contaService.getById( transferencia.getDestino().getNumero() );
 
-        contaOrigem.setSaldo( contaOrigem.getSaldo() - transferencia.getValor() );
-        contaDestino.setSaldo( contaDestino.getSaldo() + transferencia.getValor() );
-
-        _contaService.update( contaOrigem.getNumero(), contaOrigem);
-        _contaService.update( contaDestino.getNumero(), contaDestino);
+        contaOrigem.addTransferenciasEnviadas( transferencia );
+        contaDestino.addTransferenciasRecebidas( transferencia );
 
         return _transferenciaRepository.save(transferencia);
     }
@@ -58,15 +56,7 @@ public class TransferenciaService
 
     public Transferencia update(int id, Transferencia transferencia) throws MovimentacaoNotFoundException
     {
-        Transferencia transferenciaAux = this.getById(id);
-
-        transferenciaAux.setValor(transferencia.getValor());
-        transferenciaAux.setData(transferencia.getData());
-        transferenciaAux.setOrigem(transferencia.getOrigem());
-        transferenciaAux.setDestino(transferencia.getOrigem());
-
-
-        return _transferenciaRepository.save(transferenciaAux);
+        return _transferenciaRepository.save(transferencia);
     }
 
     public void deleteById(int id) throws MovimentacaoNotFoundException
@@ -76,5 +66,12 @@ public class TransferenciaService
         }
 
         _transferenciaRepository.deleteById(id);
+    }
+
+    public List<Transferencia> filtrar( Map<String, String> filtros)
+    {
+        if(filtros.containsKey( "data" )) return _transferenciaRepository.getTransferenciaFilteredByDate( filtros.get( "data" ) );
+
+        return _transferenciaRepository.findAll();
     }
 }

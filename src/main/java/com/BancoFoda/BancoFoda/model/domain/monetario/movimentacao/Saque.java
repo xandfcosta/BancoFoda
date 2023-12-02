@@ -1,15 +1,15 @@
 package com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao;
 
 import com.BancoFoda.BancoFoda.model.domain.Conta;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue( value = "saque")
 public class Saque extends Movimentacao
 {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "conta_id", nullable = true)
     private Conta conta;
 
     public Saque( )
