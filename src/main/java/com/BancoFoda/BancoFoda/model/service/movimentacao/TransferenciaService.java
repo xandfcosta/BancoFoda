@@ -1,17 +1,16 @@
-package com.BancoFoda.BancoFoda.model.service.monetario.movimentacao;
+package com.BancoFoda.BancoFoda.model.service.movimentacao;
 
 import com.BancoFoda.BancoFoda.exceptions.MovimentacaoNotFoundException;
-import com.BancoFoda.BancoFoda.model.domain.Conta;
-import com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao.Transferencia;
-import com.BancoFoda.BancoFoda.model.dtos.monetario.TransferenciaDTO;
-import com.BancoFoda.BancoFoda.model.repository.monetario.movimentacao.TransferenciaRepository;
-import com.BancoFoda.BancoFoda.model.service.ContaService;
+import com.BancoFoda.BancoFoda.model.domain.conta.Conta;
+import com.BancoFoda.BancoFoda.model.domain.movimentacao.Transferencia;
+import com.BancoFoda.BancoFoda.model.dtos.movimentacao.TransferenciaDTO;
+import com.BancoFoda.BancoFoda.model.repository.movimentacao.TransferenciaRepository;
+import com.BancoFoda.BancoFoda.model.service.conta.ContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

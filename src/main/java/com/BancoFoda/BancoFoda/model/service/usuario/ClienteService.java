@@ -1,13 +1,12 @@
 package com.BancoFoda.BancoFoda.model.service.usuario;
 
 import com.BancoFoda.BancoFoda.exceptions.UsuarioNotFoundException;
-import com.BancoFoda.BancoFoda.model.domain.*;
 import com.BancoFoda.BancoFoda.model.domain.usuario.Cliente;
 import com.BancoFoda.BancoFoda.model.domain.usuario.Usuario;
 import com.BancoFoda.BancoFoda.model.dtos.usuario.ClienteDTO;
 import com.BancoFoda.BancoFoda.model.repository.usuario.ClienteRepository;
-import com.BancoFoda.BancoFoda.model.service.ContaService;
-import com.BancoFoda.BancoFoda.model.service.monetario.movimentacao.TransferenciaService;
+import com.BancoFoda.BancoFoda.model.service.conta.ContaService;
+import com.BancoFoda.BancoFoda.model.service.movimentacao.TransferenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,10 +37,7 @@ public class ClienteService
         novoCliente.setDataNascimento( dataNascimento );
         novoCliente.setSenha( cliente.senha() );
 
-        Conta conta = new Conta();
-        conta.setSaldo( 0 );
-        conta.setAgencia( 1 );
-        novoCliente.setConta( conta );
+        novoCliente.setConta( _contaService.criarNovaConta( cliente.receitaMensal() ) );
 
         return _clienteRepository.save(novoCliente);
     }

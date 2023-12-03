@@ -1,12 +1,8 @@
 package com.BancoFoda.BancoFoda.model.domain.usuario;
 
-import com.BancoFoda.BancoFoda.model.domain.Conta;
+import com.BancoFoda.BancoFoda.model.domain.conta.Conta;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import lombok.*;
-
-import java.util.Set;
 
 @Entity
 @DiscriminatorValue(value="cliente")

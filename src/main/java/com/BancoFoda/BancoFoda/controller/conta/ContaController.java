@@ -1,7 +1,8 @@
-package com.BancoFoda.BancoFoda.controller;
+package com.BancoFoda.BancoFoda.controller.conta;
 
-import com.BancoFoda.BancoFoda.model.domain.Conta;
-import com.BancoFoda.BancoFoda.model.service.ContaService;
+import com.BancoFoda.BancoFoda.model.domain.conta.Conta;
+import com.BancoFoda.BancoFoda.model.service.conta.ContaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,8 @@ import java.util.Map;
 @RequestMapping("/conta")
 public class ContaController
 {
-    private final ContaService _contaService;
-
-    public ContaController(ContaService contaService){
-        _contaService = contaService;
-    }
+    @Autowired
+    private ContaService _contaService;
 
     @PostMapping
     public Conta save( @Valid @RequestBody Conta conta){
@@ -32,28 +30,22 @@ public class ContaController
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Conta> show( @PathVariable int id){
+    public ResponseEntity<Conta> show( @PathVariable Long id){
         Conta conta = _contaService.findById(id);
 
         return new ResponseEntity<>( conta, HttpStatus.OK );
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Conta> update(@PathVariable int id, @Valid @RequestBody Conta conta){
+    public ResponseEntity<Conta> update(@PathVariable Long id, @Valid @RequestBody Conta conta){
         return new ResponseEntity<>( _contaService.update( id, conta ),
                 HttpStatus.OK );
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Conta> delete(@PathVariable int id) {
+    public ResponseEntity<Conta> delete(@PathVariable Long id) {
         _contaService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping(name = "/filtrar", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Conta> filtrar(@RequestParam Map<String, String> params)
-    {
-        return _contaService.filtrar( params );
     }
 }

@@ -3,6 +3,7 @@ package com.BancoFoda.BancoFoda.controller.usuario;
 import com.BancoFoda.BancoFoda.model.domain.usuario.Funcionario;
 import com.BancoFoda.BancoFoda.model.service.usuario.FuncionarioService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,8 @@ import java.util.List;
 @RequestMapping("/funcionario")
 public class FuncionarioController
 {
-    private final FuncionarioService _funcionarioService;
-
-    public FuncionarioController( FuncionarioService funcionarioService){
-        _funcionarioService = funcionarioService;
-    }
+    @Autowired
+    private FuncionarioService _funcionarioService;
 
     @PostMapping
     public Funcionario save( @Valid @RequestBody Funcionario funcionario){

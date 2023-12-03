@@ -1,17 +1,14 @@
-package com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao;
+package com.BancoFoda.BancoFoda.model.domain.movimentacao;
 
-import com.BancoFoda.BancoFoda.model.domain.Conta;
+import com.BancoFoda.BancoFoda.model.domain.conta.Conta;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import java.util.Date;
 
 @Entity
 @DiscriminatorValue( value = "transferencia")

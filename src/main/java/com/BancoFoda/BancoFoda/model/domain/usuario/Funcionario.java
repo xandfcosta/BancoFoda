@@ -1,9 +1,7 @@
 package com.BancoFoda.BancoFoda.model.domain.usuario;
 
-import com.BancoFoda.BancoFoda.model.domain.Conta;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

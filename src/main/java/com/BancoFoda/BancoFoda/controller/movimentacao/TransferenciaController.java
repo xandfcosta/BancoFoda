@@ -1,9 +1,10 @@
-package com.BancoFoda.BancoFoda.controller.monetario.movimentacao;
+package com.BancoFoda.BancoFoda.controller.movimentacao;
 
-import com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao.Transferencia;
-import com.BancoFoda.BancoFoda.model.dtos.monetario.TransferenciaDTO;
-import com.BancoFoda.BancoFoda.model.service.monetario.movimentacao.TransferenciaService;
+import com.BancoFoda.BancoFoda.model.domain.movimentacao.Transferencia;
+import com.BancoFoda.BancoFoda.model.dtos.movimentacao.TransferenciaDTO;
+import com.BancoFoda.BancoFoda.model.service.movimentacao.TransferenciaService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +15,8 @@ import java.util.List;
 @RequestMapping("/transferencia")
 public class TransferenciaController
 {
-    private final TransferenciaService _transferenciaService;
-
-    public TransferenciaController( TransferenciaService transferenciaService){
-        _transferenciaService = transferenciaService;
-    }
+    @Autowired
+    private TransferenciaService _transferenciaService;
 
     @PostMapping
     public Transferencia save( @Valid @RequestBody TransferenciaDTO transferencia){

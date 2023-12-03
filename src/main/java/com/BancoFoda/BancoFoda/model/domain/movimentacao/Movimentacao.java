@@ -1,4 +1,4 @@
-package com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao;
+package com.BancoFoda.BancoFoda.model.domain.movimentacao;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
