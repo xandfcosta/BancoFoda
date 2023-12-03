@@ -9,7 +9,5 @@ import java.util.List;
 
 public interface ContaRepository extends JpaRepository< Conta, Integer>
 {
-    @Transactional
-    @Query(value = "SELECT u FROM Conta WHERE u.saldo ?1", nativeQuery = true)
-    public List<Conta> findUserFilteredBySaldo( String saldo );
+    List<Conta> findUserBySaldoGreaterThan(float saldo);
 }

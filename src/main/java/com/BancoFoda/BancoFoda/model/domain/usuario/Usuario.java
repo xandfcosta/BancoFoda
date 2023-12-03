@@ -2,100 +2,50 @@ package com.BancoFoda.BancoFoda.model.domain.usuario;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name = "tipo_usuario")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Usuario
 {
     @Id
     @Column(columnDefinition = "varchar(11)")
     private String CPF;
+
     @NotNull
     @NotBlank
     private String nomeCompleto;
+
     @NotNull
     @NotBlank
     @Email
+    @Column(unique = true)
     private String email;
+
     @NotNull
     @Past
     @Temporal(TemporalType.DATE)
     private LocalDate dataNascimento;
+
     @NotNull
     @PositiveOrZero
     private float receitaMensal;
+
     @NotNull
     @NotBlank
     private String senha;
 
-    public Usuario( )
-    {
-    }
+    public Usuario( ){}
 
-    public String getNomeCompleto( )
-    {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto( String nomeCompleto )
-    {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getCPF( )
-    {
-        return CPF;
-    }
-
-    public void setCPF( String CPF )
-    {
-        this.CPF = CPF;
-    }
-
-    public String getEmail( )
-    {
-        return email;
-    }
-
-    public void setEmail( String email )
-    {
-        this.email = email;
-    }
-
-    public LocalDate getDataNascimento( )
-    {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento( LocalDate dataNascimento )
-    {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public float getReceitaMensal( )
-    {
-        return receitaMensal;
-    }
-
-    public void setReceitaMensal( float receitaMensal )
-    {
-        this.receitaMensal = receitaMensal;
-    }
-
-    public String getSenha( )
-    {
-        return senha;
-    }
-
-    public void setSenha( String senha )
-    {
-        this.senha = senha;
-    }
-
-    private static int calcularDigitoParaCPF(String str, int[] peso) {
+    private static int calcularDigitoParaCPF( String str, int[] peso) {
         int soma = 0;
         for (int indice=str.length()-1, digito; indice >= 0; indice-- ) {
             digito = Integer.parseInt(str.substring(indice,indice+1));

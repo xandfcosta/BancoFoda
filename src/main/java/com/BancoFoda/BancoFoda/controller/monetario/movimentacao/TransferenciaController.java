@@ -1,6 +1,7 @@
 package com.BancoFoda.BancoFoda.controller.monetario.movimentacao;
 
 import com.BancoFoda.BancoFoda.model.domain.monetario.movimentacao.Transferencia;
+import com.BancoFoda.BancoFoda.model.dtos.monetario.TransferenciaDTO;
 import com.BancoFoda.BancoFoda.model.service.monetario.movimentacao.TransferenciaService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class TransferenciaController
     }
 
     @PostMapping
-    public Transferencia save( @Valid @RequestBody Transferencia transferencia){
+    public Transferencia save( @Valid @RequestBody TransferenciaDTO transferencia){
         return _transferenciaService.save(transferencia);
     }
     

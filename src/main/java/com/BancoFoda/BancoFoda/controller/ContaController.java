@@ -3,6 +3,7 @@ package com.BancoFoda.BancoFoda.controller;
 import com.BancoFoda.BancoFoda.model.domain.Conta;
 import com.BancoFoda.BancoFoda.model.service.ContaService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -32,15 +33,15 @@ public class ContaController
 
     @GetMapping("/{id}")
     public ResponseEntity<Conta> show( @PathVariable int id){
-        Conta conta = _contaService.getById(id);
+        Conta conta = _contaService.findById(id);
 
-        return new ResponseEntity<Conta>(conta, HttpStatus.OK);
+        return new ResponseEntity<>( conta, HttpStatus.OK );
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<Conta> update(@PathVariable int id, @Valid @RequestBody Conta conta){
-        return new ResponseEntity<Conta>(_contaService.update(id, conta),
-                HttpStatus.OK);
+        return new ResponseEntity<>( _contaService.update( id, conta ),
+                HttpStatus.OK );
     }
     
     @DeleteMapping("/{id}")
@@ -50,7 +51,7 @@ public class ContaController
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/filtrar")
+    @GetMapping(name = "/filtrar", consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<Conta> filtrar(@RequestParam Map<String, String> params)
     {
         return _contaService.filtrar( params );

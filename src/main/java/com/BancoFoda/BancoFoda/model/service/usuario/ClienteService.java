@@ -4,36 +4,46 @@ import com.BancoFoda.BancoFoda.exceptions.UsuarioNotFoundException;
 import com.BancoFoda.BancoFoda.model.domain.*;
 import com.BancoFoda.BancoFoda.model.domain.usuario.Cliente;
 import com.BancoFoda.BancoFoda.model.domain.usuario.Usuario;
+import com.BancoFoda.BancoFoda.model.dtos.usuario.ClienteDTO;
 import com.BancoFoda.BancoFoda.model.repository.usuario.ClienteRepository;
-import com.BancoFoda.BancoFoda.model.repository.ContaRepository;
+import com.BancoFoda.BancoFoda.model.service.ContaService;
+import com.BancoFoda.BancoFoda.model.service.monetario.movimentacao.TransferenciaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ClienteService
 {
-    private final ClienteRepository _clienteRepository;
+    @Autowired
+    private ContaService _contaService;
+    @Autowired
+    private TransferenciaService _trasnferenciaService;
+    @Autowired
+    private ClienteRepository _clienteRepository;
 
-    public ClienteService( ClienteRepository clienteRepository )
-    {
-        _clienteRepository = clienteRepository;
-    }
+    public Cliente save( ClienteDTO cliente ){
+        if(!Usuario.validarCPF(cliente.cpf())) throw new Error("CPF invalido");
+        LocalDate dataNascimento = LocalDate.parse(cliente.dataNascimento());
+        if(!Usuario.maiorDeIdade( dataNascimento) ) throw new Error("Menor de idade");
 
-    public Cliente save( Cliente cliente ){
-        if(!Usuario.validarCPF(cliente.getCPF())) throw new Error("CPF invalido");
-        if(!Usuario.maiorDeIdade(cliente.getDataNascimento())) throw new Error("Menor de idade");
+        Cliente novoCliente = new Cliente( );
+        novoCliente.setCPF( cliente.cpf() );
+        novoCliente.setNomeCompleto( cliente.nomeCompleto() );
+        novoCliente.setEmail( cliente.email() );
+        novoCliente.setReceitaMensal( cliente.receitaMensal() );
+        novoCliente.setDataNascimento( dataNascimento );
+        novoCliente.setSenha( cliente.senha() );
 
         Conta conta = new Conta();
-
         conta.setSaldo( 0 );
         conta.setAgencia( 1 );
+        novoCliente.setConta( conta );
 
-        cliente.setConta( conta );
-
-        return _clienteRepository.save(cliente);
+        return _clienteRepository.save(novoCliente);
     }
 
     public List<Cliente> list(){
