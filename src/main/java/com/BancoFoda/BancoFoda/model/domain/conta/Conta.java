@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Set;
 
@@ -31,7 +33,8 @@ public class Conta
     @PositiveOrZero
     private float saldo;
 
-    @OneToOne(mappedBy = "conta")
+    @OneToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Cliente cliente;
 
     @NotNull
@@ -42,6 +45,6 @@ public class Conta
     @Positive
     private float creditoTotal;
 
-    @OneToMany(mappedBy = "conta")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "conta")
     private Set<Cartao> cartoes;
 }

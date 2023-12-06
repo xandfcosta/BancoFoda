@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 public class Cliente extends Usuario
 {
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "conta_id")
     private Conta conta;
 }

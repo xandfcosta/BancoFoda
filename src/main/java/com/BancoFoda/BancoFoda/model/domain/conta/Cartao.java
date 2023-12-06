@@ -47,11 +47,6 @@ public class Cartao
     @OneToMany(mappedBy = "cartao")
     Set<Fatura> faturas;
 
-    public String getNumero( )
-    {
-        return String.format( "%1$16s", numero.toString() );
-    }
-
     public String gerarCodigoValidacao()
     {
         StringBuilder cv = new StringBuilder( );
