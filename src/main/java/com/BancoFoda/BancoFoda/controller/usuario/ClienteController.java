@@ -27,7 +27,7 @@ public class ClienteController
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> show( @PathVariable String id){
+    public ResponseEntity<Cliente> show( @PathVariable String id ){
         Cliente cliente = _clienteService.getById(id);
 
         return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);

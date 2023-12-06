@@ -10,5 +10,9 @@ import java.util.Optional;
 public interface FaturaRepository extends JpaRepository< Fatura, Long>
 {
     @Query(value = "SELECT * FROM fatura f WHERE f.data_vencimento = ?1", nativeQuery = true)
+<<<<<<< Updated upstream
     Optional< List<Fatura> > findByDataVencimento( String data );
+=======
+    Optional< List<Fatura> > findByDataVencimento( String data);
+>>>>>>> Stashed changes
 }
